@@ -42,9 +42,6 @@ install -dpm 0755                     %{buildroot}%{_sharedstatedir}/%{name}
 install -dpm 0755                     %{buildroot}%{_localstatedir}/log/%{name}
 install -Dpm 0644 doc/*.8             %{buildroot}%{_mandir}/man8/
 
-%check
-# go test should be here... :)
-
 %files
 %dir %{_sysconfdir}/%{name}
 %dir %{_sharedstatedir}/%{name}
