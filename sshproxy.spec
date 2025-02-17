@@ -3,7 +3,7 @@ Version:        1.6.3
 Release:        1%{?dist}
 Summary:        Proxy SSH connections on a gateway
 
-URL:            https://github.com/cea-hpc/%{name} 
+URL:            https://github.com/cea-hpc/%{name}
 License:        CeCILL-B
 Source0:        https://github.com/cea-hpc/%{name}/archive/refs/tags/v%{version}.tar.gz
 
@@ -32,26 +32,29 @@ a2x -asshproxy_version=%{version} -f manpage doc/sshproxy-replay.txt
 a2x -asshproxy_version=%{version} -f manpage doc/sshproxyctl.txt
 
 %install
-install -Dpm 0755 bin/%{name}         %{buildroot}%{_sbindir}/%{name}
-install -Dpm 0755 bin/%{name}-dumpd   %{buildroot}%{_sbindir}/%{name}-dumpd 
-install -Dpm 0755 bin/%{name}-replay  %{buildroot}%{_bindir}/%{name}-replay
-install -Dpm 0755 bin/%{name}ctl      %{buildroot}%{_bindir}/%{name}ctl
-install -Dpm 0644 config/%{name}.yaml %{buildroot}%{_sysconfdir}/%{name}/%{name}.yaml
 install -dpm 0755                     %{buildroot}%{_mandir}/man8/
 install -dpm 0755                     %{buildroot}%{_sharedstatedir}/%{name}
 install -dpm 0755                     %{buildroot}%{_localstatedir}/log/%{name}
+install -dpm 0755                     %{buildroot}%{_datadir}/licenses/%{name}
+install -Dpm 0755 bin/%{name}         %{buildroot}%{_sbindir}/%{name}
+install -Dpm 0755 bin/%{name}-dumpd   %{buildroot}%{_sbindir}/%{name}-dumpd
+install -Dpm 0755 bin/%{name}-replay  %{buildroot}%{_bindir}/%{name}-replay
+install -Dpm 0755 bin/%{name}ctl      %{buildroot}%{_bindir}/%{name}ctl
+install -Dpm 0644 config/%{name}.yaml %{buildroot}%{_sysconfdir}/%{name}/%{name}.yaml
 install -Dpm 0644 doc/*.8             %{buildroot}%{_mandir}/man8/
+install -Dpm 0644 Licence_*.txt       %{buildroot}%{_datadir}/licenses/%{name}
 
 %files
 %dir %{_sysconfdir}/%{name}
 %dir %{_sharedstatedir}/%{name}
 %dir %{_localstatedir}/log/%{name}
-%{_mandir}/man8/*
 %{_sbindir}/%{name}
-%{_sbindir}/%{name}-dumpd 
+%{_sbindir}/%{name}-dumpd
 %{_bindir}/%{name}-replay
 %{_bindir}/%{name}ctl
 %config(noreplace) %{_sysconfdir}/%{name}/%{name}.yaml
+%{_datadir}/licenses/%{name}/*
+%{_mandir}/man8/*
 
 
 %changelog
